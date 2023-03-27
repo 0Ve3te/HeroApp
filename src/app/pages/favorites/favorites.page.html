@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Favorites heroes</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid *ngIf="heroes else loading">
+    <ion-row>
+      <ion-col size="12" size-sm="6" size-md="4" size-lg="3" size-xl="3" *ngFor="let hero of heroes">
+        <ion-card>
+          <img [routerLink]="'/hero/' + hero.id" alt="Image of {{hero.name}}" src="{{hero.images.md}}" />
+
+          <ion-card-header>
+            <ion-card-title> {{hero.name}}</ion-card-title>
+            <ion-card-subtitle><ion-chip color="primary">
+              <ion-avatar>
+                <img alt="Race" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+              </ion-avatar>
+              <ion-label>{{hero.appearance.race}}</ion-label>
+              <ion-label *ngIf="hero.appearance.race === null">None</ion-label>
+            </ion-chip></ion-card-subtitle>
+
+            <ion-grid>
+              <ion-row>
+                <ion-col size="2">
+                  <div class="ability-container">
+                    <img src="../../../assets/icon/intelligence.png" alt="intelligence">
+                    <span class="ion-padding-top-8">{{hero.powerstats.intelligence}}</span>
+                  </div>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="ability-container">
+                    <img src="../../../assets/icon/strength.png" alt="strength">
+                    <span class="ion-padding-top-8">{{hero.powerstats.strength}}</span>
+                  </div>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="ability-container">
+                    <img src="../../../assets/icon/speed.png" alt="speed">
+                    <span class="ion-padding-top-8">{{hero.powerstats.speed}}</span>
+                  </div>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="ability-container">
+                    <img src="../../../assets/icon/durability.png" alt="durability">
+                    <span class="ion-padding-top-8">{{hero.powerstats.durability}}</span>
+                  </div>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="ability-container">
+                    <img src="../../../assets/icon/power.png" alt="power">
+                    <span class="ion-padding-top-8">{{hero.powerstats.power}}</span>
+                  </div>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="ability-container">
+                    <img src="../../../assets/icon/combat.png" alt="combat">
+                    <span class="ion-padding-top-8">{{hero.powerstats.combat}}</span>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+          </ion-card-header>
+          <ion-card-content>
+            <ion-text color="primary">Group affiliation:</ion-text> {{hero.connections.groupAffiliation}}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ng-template #loading>
+    <div class="spinner-container">
+      <h3 class="ion-text-center ion-margin-top">Nothing here...</h3>
+    </div>
+  </ng-template>
+
+</ion-content>
+

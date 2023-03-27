@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>hero</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid *ngIf="hero">
+    <ion-row>
+      <ion-col size="12" [sizeMd]="6" [sizeLg]="4">
+
+        <ion-card>
+          <img alt="{{hero.name}}" src="{{hero.images.lg}}" />
+          <ion-card-header>
+            <ion-card-title>
+              <ion-grid>
+              <ion-row class="ion-justify-content-between ion-align-items-center">
+                <ion-col size="4">
+                  <div>{{hero.name}}</div>
+                </ion-col>
+                <ion-col size="4">
+                  <div *ngIf="isLiked === false">
+                    <ion-button fill="clear" (click)="AddToFav(hero)"> <ion-icon slot="icon-only" color="danger" name="heart"></ion-icon> </ion-button>
+                  </div>
+                  <div *ngIf="isLiked === true">
+                    <ion-button fill="clear" (click)="RemoveFromFav(hero)"> <ion-icon slot="icon-only" color="danger" name="trash"></ion-icon> </ion-button>
+                  </div>
+                </ion-col>
+
+              </ion-row>
+            </ion-grid></ion-card-title>
+            <ion-card-subtitle>{{hero.appearance.race}}, {{hero.appearance.gender}}</ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content>
+            <p>Height: {{hero.appearance.height[1]}}</p>
+            <p>Weight: {{hero.appearance.weight[1]}}</p>
+            <p>Eye color: {{hero.appearance.eyeColor}}</p>
+            <p>Hair color: {{hero.appearance.hairColor}}</p>
+            <ion-text color="primary">Abilities</ion-text>
+
+            <ion-grid>
+              <ion-row>
+                <ion-col size="2">
+                  <div class="ability-container">
+                    <img src="../../../assets/icon/intelligence.png" alt="intelligence">
+                    <span class="ion-padding-top-8">{{hero.powerstats.intelligence}}</span>
+                  </div>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="ability-container">
+                    <img src="../../../assets/icon/strength.png" alt="strength">
+                    <span class="ion-padding-top-8">{{hero.powerstats.strength}}</span>
+                  </div>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="ability-container">
+                    <img src="../../../assets/icon/speed.png" alt="speed">
+                    <span class="ion-padding-top-8">{{hero.powerstats.speed}}</span>
+                  </div>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="ability-container">
+                    <img src="../../../assets/icon/durability.png" alt="durability">
+                    <span class="ion-padding-top-8">{{hero.powerstats.durability}}</span>
+                  </div>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="ability-container">
+                    <img src="../../../assets/icon/power.png" alt="power">
+                    <span class="ion-padding-top-8">{{hero.powerstats.power}}</span>
+                  </div>
+                </ion-col>
+                <ion-col size="2">
+                  <div class="ability-container">
+                    <img src="../../../assets/icon/combat.png" alt="combat">
+                    <span class="ion-padding-top-8">{{hero.powerstats.combat}}</span>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+      <ion-col size="12" [sizeMd]="6" [sizeLg]="8">
+        <h2>Full name: {{hero.biography.fullName}}</h2>
+        <p>Alter ego: {{hero.biography.alterEgos}}</p>
+        <p>Publisher: {{hero.biography.publisher}}</p>
+        <p>Hero of <ion-text [color]="hero.biography.alignment === 'good'? 'success' : 'danger' ">{{hero.biography.alignment}}</ion-text></p>
+        <p>Work: {{hero.work.occupation}}, {{hero.work.base}}</p>
+        <p>Connections: {{hero.connections.groupAffiliation}}</p>
+        <p>Relatives: {{hero.connections.relatives}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
